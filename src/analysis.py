@@ -1,9 +1,3 @@
-"""
-Analysis Module
-
-Functions for ERP analysis, spectral analysis, and band power computation.
-"""
-
 import numpy as np
 from scipy import signal as sp_signal
 from scipy import stats
@@ -21,21 +15,6 @@ DEFAULT_FREQ_BANDS = {
 
 
 def compute_erp(signals, fs=1000):
-    """
-    Compute Event-Related Potential (mean and SEM across trials).
-
-    Parameters
-    ----------
-    signals : list
-        List of signal arrays (one per session).
-    fs : float, optional
-        Sampling frequency in Hz (default: 1000).
-
-    Returns
-    -------
-    erp_results : list
-        List of dictionaries containing ERP results for each session.
-    """
     erp_results = []
 
     for session_idx in range(len(signals)):
@@ -59,29 +38,6 @@ def compute_erp(signals, fs=1000):
 
 
 def find_erp_peak(erp_mean, fs=1000, window_start=100, window_end=200, peak_type='min'):
-    """
-    Find peak amplitude and latency in ERP.
-
-    Parameters
-    ----------
-    erp_mean : numpy.ndarray
-        Mean ERP waveform.
-    fs : float, optional
-        Sampling frequency in Hz (default: 1000).
-    window_start : float, optional
-        Start of search window in ms (default: 100).
-    window_end : float, optional
-        End of search window in ms (default: 200).
-    peak_type : str, optional
-        'min' for negative peak, 'max' for positive peak (default: 'min').
-
-    Returns
-    -------
-    peak_amplitude : float
-        Peak amplitude value.
-    peak_latency : float
-        Peak latency in ms.
-    """
     start_idx = int(window_start * fs / 1000)
     end_idx = int(window_end * fs / 1000)
 
@@ -97,23 +53,6 @@ def find_erp_peak(erp_mean, fs=1000, window_start=100, window_end=200, peak_type
 
 
 def compute_psd(signals, fs=1000, nperseg=128):
-    """
-    Compute Power Spectral Density using Welch's method.
-
-    Parameters
-    ----------
-    signals : list
-        List of signal arrays (one per session).
-    fs : float, optional
-        Sampling frequency in Hz (default: 1000).
-    nperseg : int, optional
-        Length of each segment for Welch's method (default: 128).
-
-    Returns
-    -------
-    psd_results : list
-        List of dictionaries containing PSD results for each session.
-    """
     psd_results = []
 
     for session_idx in range(len(signals)):
@@ -141,23 +80,6 @@ def compute_psd(signals, fs=1000, nperseg=128):
 
 
 def compute_peak_frequency(psd_result, freq_range=(10, 200)):
-    """
-    Find peak frequency in PSD within specified range.
-
-    Parameters
-    ----------
-    psd_result : dict
-        PSD result dictionary from compute_psd.
-    freq_range : tuple, optional
-        Frequency range to search (default: (10, 200) Hz).
-
-    Returns
-    -------
-    peak_freq : float
-        Peak frequency in Hz.
-    peak_power : float
-        Power at peak frequency.
-    """
     freqs = psd_result['freqs']
     mean_psd = psd_result['mean_psd']
 
@@ -173,25 +95,6 @@ def compute_peak_frequency(psd_result, freq_range=(10, 200)):
 
 
 def compute_band_power(signals, fs=1000, freq_bands=None, nperseg=128):
-    """
-    Compute power in specified frequency bands for each trial.
-
-    Parameters
-    ----------
-    signals : list
-        List of signal arrays (one per session).
-    fs : float, optional
-        Sampling frequency in Hz (default: 1000).
-    freq_bands : dict, optional
-        Dictionary of frequency bands {name: (low, high)}.
-    nperseg : int, optional
-        Length of each segment for Welch's method (default: 128).
-
-    Returns
-    -------
-    band_power_results : list
-        List of dictionaries containing band power for each session.
-    """
     if freq_bands is None:
         freq_bands = DEFAULT_FREQ_BANDS
 
@@ -225,23 +128,6 @@ def compute_band_power(signals, fs=1000, freq_bands=None, nperseg=128):
 
 
 def compute_band_ratio(band_power_result, numerator_band, denominator_band):
-    """
-    Compute ratio between two frequency bands.
-
-    Parameters
-    ----------
-    band_power_result : dict
-        Band power result dictionary from compute_band_power.
-    numerator_band : str
-        Name of the numerator band.
-    denominator_band : str
-        Name of the denominator band.
-
-    Returns
-    -------
-    ratio : numpy.ndarray
-        Array of ratios for each trial.
-    """
     band_powers = band_power_result['band_powers']
     numerator = band_powers[numerator_band]
     denominator = band_powers[denominator_band]
@@ -253,25 +139,6 @@ def compute_band_ratio(band_power_result, numerator_band, denominator_band):
 
 
 def compare_conditions(data_low, data_high, test='ttest'):
-    """
-    Statistical comparison between two conditions.
-
-    Parameters
-    ----------
-    data_low : numpy.ndarray
-        Data from low frequency condition.
-    data_high : numpy.ndarray
-        Data from high frequency condition.
-    test : str, optional
-        Statistical test to use ('ttest' or 'mannwhitney').
-
-    Returns
-    -------
-    statistic : float
-        Test statistic.
-    p_value : float
-        P-value of the test.
-    """
     if test == 'ttest':
         statistic, p_value = stats.ttest_ind(data_low, data_high)
     elif test == 'mannwhitney':
@@ -283,23 +150,6 @@ def compare_conditions(data_low, data_high, test='ttest'):
 
 
 def analyze_band_power_statistics(band_power_low, band_power_high, freq_bands=None):
-    """
-    Compute statistics comparing band power between conditions.
-
-    Parameters
-    ----------
-    band_power_low : list
-        Band power results for low frequency condition.
-    band_power_high : list
-        Band power results for high frequency condition.
-    freq_bands : dict, optional
-        Dictionary of frequency bands.
-
-    Returns
-    -------
-    stats_results : list
-        List of statistics for each session and band.
-    """
     if freq_bands is None:
         freq_bands = DEFAULT_FREQ_BANDS
 

@@ -1,10 +1,3 @@
-"""
-Mouse LFP Analysis Package
-
-This package provides tools for analyzing Local Field Potential (LFP) data
-recorded from the mouse auditory cortex in response to tone stimuli.
-"""
-
 from .data_loader import load_lfp_data, separate_by_frequency
 from .preprocessing import design_bandpass_filter, apply_filter, downsample, baseline_correction
 from .outlier_detection import detect_outliers_mad, remove_outliers

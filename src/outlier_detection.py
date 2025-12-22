@@ -1,39 +1,7 @@
-"""
-Outlier Detection Module
-
-Functions for detecting and removing outlier trials based on signal variance.
-"""
-
 import numpy as np
 
 
 def detect_outliers_mad(data, k=3):
-    """
-    Detect outliers using Median Absolute Deviation (MAD) method.
-
-    The MAD is a robust measure of variability. Outliers are defined as
-    data points that fall outside the range [median - k*MAD, median + k*MAD].
-
-    Parameters
-    ----------
-    data : numpy.ndarray
-        1D array of values (e.g., trial variances).
-    k : float, optional
-        Number of MADs from median to define outlier threshold (default: 3).
-
-    Returns
-    -------
-    outlier_mask : numpy.ndarray
-        Boolean array where True indicates an outlier.
-    median : float
-        Median of the data.
-    mad : float
-        Median Absolute Deviation.
-    lower_bound : float
-        Lower threshold for outlier detection.
-    upper_bound : float
-        Upper threshold for outlier detection.
-    """
     median = np.median(data)
     mad = np.median(np.abs(data - median))
 
@@ -46,19 +14,6 @@ def detect_outliers_mad(data, k=3):
 
 
 def compute_trial_variances(signals):
-    """
-    Compute variance for each trial across all sessions.
-
-    Parameters
-    ----------
-    signals : list
-        List of signal arrays (one per session).
-
-    Returns
-    -------
-    variances : list
-        List of variance arrays (one per session).
-    """
     variances = []
     for session_idx in range(len(signals)):
         sig = signals[session_idx]
@@ -68,23 +23,6 @@ def compute_trial_variances(signals):
 
 
 def find_outlier_indices(signals, k=3):
-    """
-    Find outlier trial indices for each session.
-
-    Parameters
-    ----------
-    signals : list
-        List of signal arrays (one per session).
-    k : float, optional
-        MAD multiplier for outlier threshold (default: 3).
-
-    Returns
-    -------
-    outlier_indices : list
-        List of arrays containing outlier trial indices for each session.
-    detection_info : list
-        List of dictionaries with detection statistics for each session.
-    """
     outlier_indices = []
     detection_info = []
 
@@ -112,23 +50,6 @@ def find_outlier_indices(signals, k=3):
 
 
 def remove_outliers(signals, outlier_indices):
-    """
-    Remove outlier trials from signals.
-
-    Parameters
-    ----------
-    signals : list
-        List of signal arrays (one per session).
-    outlier_indices : list
-        List of arrays containing outlier trial indices for each session.
-
-    Returns
-    -------
-    clean_signals : list
-        List of signal arrays with outliers removed.
-    removal_summary : list
-        List of dictionaries with removal statistics for each session.
-    """
     clean_signals = []
     removal_summary = []
 
@@ -154,16 +75,6 @@ def remove_outliers(signals, outlier_indices):
 
 
 def print_removal_summary(removal_summary_low, removal_summary_high):
-    """
-    Print a formatted summary of outlier removal.
-
-    Parameters
-    ----------
-    removal_summary_low : list
-        Removal summary for low frequency condition.
-    removal_summary_high : list
-        Removal summary for high frequency condition.
-    """
     print("Outlier Removal Summary")
     print("=" * 60)
 

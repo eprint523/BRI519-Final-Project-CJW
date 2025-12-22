@@ -1,26 +1,8 @@
-"""
-Visualization Module
-
-Functions for creating plots and figures for LFP analysis.
-"""
-
 import numpy as np
 import matplotlib.pyplot as plt
 
 
 def plot_variance_distribution(detection_info, title_suffix="", save_path=None):
-    """
-    Plot variance distribution and outlier detection results.
-
-    Parameters
-    ----------
-    detection_info : list
-        List of detection info dictionaries from find_outlier_indices.
-    title_suffix : str, optional
-        Suffix to add to plot title.
-    save_path : str, optional
-        Path to save figure. If None, figure is displayed.
-    """
     fig, axes = plt.subplots(2, 2, figsize=(14, 10))
     fig.suptitle(f'Variance Distribution and Outlier Detection {title_suffix}', fontsize=16)
 
@@ -59,20 +41,6 @@ def plot_variance_distribution(detection_info, title_suffix="", save_path=None):
 
 
 def plot_outlier_comparison(signals_before, outlier_indices, title_suffix="", save_path=None):
-    """
-    Plot comparison of normal vs outlier trial waveforms.
-
-    Parameters
-    ----------
-    signals_before : list
-        List of signal arrays before outlier removal.
-    outlier_indices : list
-        List of outlier index arrays.
-    title_suffix : str, optional
-        Suffix to add to plot title.
-    save_path : str, optional
-        Path to save figure.
-    """
     fig, axes = plt.subplots(2, 4, figsize=(16, 8))
     fig.suptitle(f'Normal vs Outlier Trial Examples {title_suffix}', fontsize=14)
 
@@ -114,20 +82,6 @@ def plot_outlier_comparison(signals_before, outlier_indices, title_suffix="", sa
 
 
 def plot_before_after_removal(signals_before, signals_after, title_suffix="", save_path=None):
-    """
-    Plot mean signal before and after outlier removal.
-
-    Parameters
-    ----------
-    signals_before : list
-        List of signal arrays before outlier removal.
-    signals_after : list
-        List of signal arrays after outlier removal.
-    title_suffix : str, optional
-        Suffix to add to plot title.
-    save_path : str, optional
-        Path to save figure.
-    """
     fig, axes = plt.subplots(2, 2, figsize=(14, 10))
     fig.suptitle(f'Mean Signal: Before vs After Outlier Removal {title_suffix}', fontsize=14)
 
@@ -167,24 +121,6 @@ def plot_before_after_removal(signals_before, signals_after, title_suffix="", sa
 
 
 def plot_erp(erp_low, erp_high, freq_info, stim_onset=100, stim_offset=150, save_path=None):
-    """
-    Plot ERP comparison between low and high frequency conditions.
-
-    Parameters
-    ----------
-    erp_low : list
-        ERP results for low frequency condition.
-    erp_high : list
-        ERP results for high frequency condition.
-    freq_info : list
-        Frequency information for each session.
-    stim_onset : float, optional
-        Stimulus onset time in ms (default: 100).
-    stim_offset : float, optional
-        Stimulus offset time in ms (default: 150).
-    save_path : str, optional
-        Path to save figure.
-    """
     fig, axes = plt.subplots(2, 2, figsize=(16, 12))
 
     for session_idx in range(4):
@@ -229,20 +165,6 @@ def plot_erp(erp_low, erp_high, freq_info, stim_onset=100, stim_offset=150, save
 
 
 def plot_psd(psd_low, psd_high, freq_info, save_path=None):
-    """
-    Plot Power Spectral Density comparison.
-
-    Parameters
-    ----------
-    psd_low : list
-        PSD results for low frequency condition.
-    psd_high : list
-        PSD results for high frequency condition.
-    freq_info : list
-        Frequency information for each session.
-    save_path : str, optional
-        Path to save figure.
-    """
     fig, axes = plt.subplots(2, 2, figsize=(14, 10))
     fig.suptitle('Power Spectral Density Analysis', fontsize=14)
 
@@ -274,22 +196,6 @@ def plot_psd(psd_low, psd_high, freq_info, save_path=None):
 
 
 def plot_band_power(band_power_low, band_power_high, freq_info, freq_bands, save_path=None):
-    """
-    Plot band power comparison as bar charts.
-
-    Parameters
-    ----------
-    band_power_low : list
-        Band power results for low frequency condition.
-    band_power_high : list
-        Band power results for high frequency condition.
-    freq_info : list
-        Frequency information for each session.
-    freq_bands : dict
-        Dictionary of frequency bands.
-    save_path : str, optional
-        Path to save figure.
-    """
     fig, axes = plt.subplots(2, 2, figsize=(16, 12))
     band_names = list(freq_bands.keys())
     x_pos = np.arange(len(band_names))
@@ -331,20 +237,6 @@ def plot_band_power(band_power_low, band_power_high, freq_info, freq_bands, save
 
 
 def plot_band_ratio(ratio_low, ratio_high, ratio_name, save_path=None):
-    """
-    Plot band power ratio comparison.
-
-    Parameters
-    ----------
-    ratio_low : list
-        Ratio values for low frequency condition (one per session).
-    ratio_high : list
-        Ratio values for high frequency condition (one per session).
-    ratio_name : str
-        Name of the ratio being plotted.
-    save_path : str, optional
-        Path to save figure.
-    """
     fig, ax = plt.subplots(figsize=(8, 6))
 
     sessions = np.arange(4)
