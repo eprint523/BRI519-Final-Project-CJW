@@ -1,6 +1,6 @@
-Author: Choi Joung Woo (2025011097)
-Course: BRI519 - Brain Imaging Informatics (Fall 2025)
-Institution: Korea University
+- Author: Choi Joung Woo (2025011097)
+- Course: BRI519 - Brain Imaging Informatics (Fall 2025)
+- Institution: Korea University
 
 ## Project Overview
 This project analyzes LFP signals recorded from the mouse auditory cortex during auditory tone stimulation experiments. The analysis includes:
@@ -66,29 +66,14 @@ clean_low, _ = remove_outliers(processed_low, outlier_idx)
 # Analyze
 erp_results = compute_erp(clean_low)
 ```
-
 ## Docker Setup
 
-### Building the Docker Image
-
 ```bash
+# Building the Docker Image
 docker build -t mouselfp-analysis .
-```
-
-### Running the Container
-
-```bash
+# Running the Container
 docker run -v $(pwd)/output:/app/output mouselfp-analysis
-```
-
-On Windows PowerShell:
-```powershell
-docker run -v ${PWD}/output:/app/output mouselfp-analysis
-```
-
-### Pulling from Docker Hub
-
-```bash
+# Pulling from Docker Hub
 docker pull eprint523/mouselfp-analysis:latest
 docker run -v $(pwd)/output:/app/output eprint523/mouselfp-analysis:latest
 ```
@@ -118,17 +103,8 @@ docker run -v $(pwd)/output:/app/output eprint523/mouselfp-analysis:latest
 
 
 ## Dependencies
-
 - Python >= 3.8
 - NumPy >= 1.20.0
 - SciPy >= 1.7.0
 - Matplotlib >= 3.4.0
 
-## License
-
-This project is for educational purposes as part of the BRI519 course at Korea University.
-
-## Acknowledgments
-
-- Course Instructor: Prof. Jonghwan Lee
-- Teaching Assistant: neti2207@korea.ac.kr
