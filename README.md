@@ -1,65 +1,30 @@
-# Mouse LFP Analysis
-
-Analysis of Local Field Potential (LFP) data recorded from the mouse auditory cortex in response to tone stimuli.
-
-**Author:** Choi Joung Woo (2025011097)
-**Course:** BRI519 - Brain Imaging Informatics (Fall 2025)
-**Institution:** Korea University
+Author: Choi Joung Woo (2025011097)
+Course: BRI519 - Brain Imaging Informatics (Fall 2025)
+Institution: Korea University
 
 ## Project Overview
-
 This project analyzes LFP signals recorded from the mouse auditory cortex during auditory tone stimulation experiments. The analysis includes:
 
-- **Preprocessing**: Bandpass filtering, downsampling, and baseline correction
-- **Outlier Detection**: MAD-based outlier trial rejection
-- **ERP Analysis**: Event-Related Potential computation and peak analysis
-- **Frequency Analysis**: Power Spectral Density and band power analysis
+- Preprocessing: Bandpass filtering, downsampling, and baseline correction
+- Outlier Detection: MAD-based outlier trial rejection
+- ERP Analysis: Event-Related Potential computation and peak analysis
+- Frequency Analysis: Power Spectral Density and band power analysis
 
-## Project Structure
-
-```
-BRI519-Final-Project-CJW/
-├── data/
-│   └── mouseLFP.mat          # Raw LFP data
-├── src/
-│   ├── __init__.py           # Package initialization
-│   ├── data_loader.py        # Data loading functions
-│   ├── preprocessing.py      # Signal preprocessing
-│   ├── outlier_detection.py  # Outlier detection and removal
-│   ├── analysis.py           # ERP and frequency analysis
-│   └── visualization.py      # Plotting functions
-├── notebooks/
-│   └── original_analysis.ipynb  # Original Jupyter notebook
-├── output/                   # Generated figures (created on run)
-├── main.py                   # Main analysis script
-├── requirements.txt          # Python dependencies
-├── Dockerfile               # Docker configuration
-└── README.md
-```
 
 ## Installation
 
-### Option 1: Local Installation
-
-1. **Clone the repository**
+### Local Installation
 ```bash
 git clone https://github.com/eprint523/BRI519-Final-Project-CJW.git
 cd BRI519-Final-Project-CJW
-```
-
-2. **Create virtual environment (recommended)**
-```bash
+# Create virtual environment 
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-3. **Install dependencies**
-```bash
+# install dependencies
 pip install -r requirements.txt
 ```
 
 ### Option 2: Docker (Recommended for reproducibility)
-
 See [Docker Setup](#docker-setup) section below.
 
 ## Usage
@@ -151,21 +116,6 @@ docker run -v $(pwd)/output:/app/output [DOCKER_HUB_USERNAME]/mouselfp-analysis:
 - **Window**: 100-300 ms post-stimulus
 - **Statistics**: Independent t-test between conditions
 
-## Output
-
-The analysis generates the following figures in the `output/` directory:
-
-| File | Description |
-|------|-------------|
-| `outlier_detection_low.png` | Variance distribution for low-frequency trials |
-| `outlier_detection_high.png` | Variance distribution for high-frequency trials |
-| `outlier_comparison_low.png` | Normal vs outlier trial waveforms (low) |
-| `outlier_comparison_high.png` | Normal vs outlier trial waveforms (high) |
-| `before_after_low.png` | Mean signal before/after outlier removal (low) |
-| `before_after_high.png` | Mean signal before/after outlier removal (high) |
-| `erp_analysis.png` | ERP comparison between conditions |
-| `psd_analysis.png` | Power Spectral Density analysis |
-| `band_power_analysis.png` | Frequency band power comparison |
 
 ## Dependencies
 
