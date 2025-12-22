@@ -13,8 +13,9 @@ This project analyzes LFP signals recorded from the mouse auditory cortex during
 
 ## Installation
 
-### 1. Local Installation
+
 ```bash
+# Local Installation
 git clone https://github.com/eprint523/BRI519-Final-Project-CJW.git
 cd BRI519-Final-Project-CJW
 # Create virtual environment 
@@ -25,7 +26,7 @@ pip install -r requirements.txt
 ```
 
 ### 2. Docker
-See [Docker Setup](#docker-setup) section below.
+See Docker Setup section below.
 
 ## Usage
 
