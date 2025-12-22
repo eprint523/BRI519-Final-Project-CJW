@@ -13,7 +13,7 @@ This project analyzes LFP signals recorded from the mouse auditory cortex during
 
 ## Installation
 
-### Local Installation
+### 1. Local Installation
 ```bash
 git clone https://github.com/eprint523/BRI519-Final-Project-CJW.git
 cd BRI519-Final-Project-CJW
@@ -24,7 +24,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### Option 2: Docker (Recommended for reproducibility)
+### 2. Docker
 See [Docker Setup](#docker-setup) section below.
 
 ## Usage
@@ -89,8 +89,8 @@ docker run -v ${PWD}/output:/app/output mouselfp-analysis
 ### Pulling from Docker Hub
 
 ```bash
-docker pull [DOCKER_HUB_USERNAME]/mouselfp-analysis:latest
-docker run -v $(pwd)/output:/app/output [DOCKER_HUB_USERNAME]/mouselfp-analysis:latest
+docker pull eprint523/mouselfp-analysis:latest
+docker run -v $(pwd)/output:/app/output eprint523/mouselfp-analysis:latest
 ```
 
 ## Analysis Methods
