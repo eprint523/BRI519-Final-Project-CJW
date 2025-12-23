@@ -25,7 +25,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 2. Docker
+### Docker
 See Docker Setup section below.
 
 ## Usage
