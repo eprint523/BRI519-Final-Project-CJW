@@ -25,7 +25,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### Docker
+### Docker(assisted by Claude)
 See Docker Setup section below.
 
 ## Usage
@@ -67,7 +67,7 @@ clean_low, _ = remove_outliers(processed_low, outlier_idx)
 # Analyze
 erp_results = compute_erp(clean_low)
 ```
-## Docker Setup
+## Docker Setup(assisted by Claude)
 
 ```bash
 # Building the Docker Image
