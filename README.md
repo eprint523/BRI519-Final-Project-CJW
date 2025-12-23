@@ -1,6 +1,5 @@
 - Author: Choi Joung Woo (2025011097)
 - Course: BRI519 - Brain Imaging Informatics (Fall 2025)
-- Institution: Korea University
 
 ## Project Overview
 This project analyzes LFP signals recorded from the mouse auditory cortex during auditory tone stimulation experiments. The analysis includes:
